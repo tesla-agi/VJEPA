@@ -130,33 +130,33 @@ the tripwire fires if `tgt_cos > 0.98`, `tgt_eff_rank < 3` or
 
 Into `runs/<name>/viz/` (derived from the `--ckpt` path):
 
-**1. `1_masks.png`** — the real clip with context patches (green outline) and
+**1.MASKS** — the real clip with context patches (green outline) and
 target patches (red fill), ball circled
 
 <img width="1736" height="924" alt="1_masks.png" src="https://github.com/user-attachments/assets/8be2f4ba-f14c-4a63-9745-89b0949285a7" />
 
-**2. `2_collapse.png`** — pairwise-cosine histogram and singular spectrum, with
+**2.COLLAPSE** — pairwise-cosine histogram and singular spectrum, with
 a HEALTHY / COLLAPSED verdict
 
 <img width="1540" height="588" alt="2_collapse.png" src="https://github.com/user-attachments/assets/cc670a2f-903d-4f3e-9587-7716e12d2632" />
 
-**3. `3_features.png`** — encoder tokens PCA'd to RGB and painted back onto the
+**3.FEATURES** — encoder tokens PCA'd to RGB and painted back onto the
 frame; bricks / playfield / paddle should come out as different colours
 
 <img width="1736" height="980" alt="3_features.png" src="https://github.com/user-attachments/assets/f506e1f4-a6ad-4b4c-bb07-d5ab3c483e18" />
 
-**4. `4_pred_error.png`** — per-patch cosine between predicted and true target
+**4.PRED_ERROR** — per-patch cosine between predicted and true target
 embedding, over the real frame
 
 <img width="1552" height="514" alt="4_pred_error.png" src="https://github.com/user-attachments/assets/588b1f29-0b69-415b-a5f4-ae2f7e42ee04" />
 
-**5. `5_ball_track.png` + `ball_track.gif`** — **the ball**: true position
+**5.BALL TRACK** — **the ball**: true position
 (green) vs the position a linear probe reads out of the frozen features (red)
 
 <img width="1904" height="777" alt="5_ball_track.png" src="https://github.com/user-attachments/assets/051df484-5b14-4d91-819f-098372229234" />
 <img width="420" height="440" alt="ball_track.gif" src="https://github.com/user-attachments/assets/ea90d59f-3057-4a90-96c8-7caa2ad32007" />
 
-**6. `6_rollout.png`** — the last frame is hidden from the encoder entirely; the
+**6.ROLLOUT** — the last frame is hidden from the encoder entirely; the
 predictor imagines its tokens and the probe reads the ball position out of the
 *imagined* tokens (orange) against where the ball really was (green)
 
