@@ -3,7 +3,7 @@ import torch.nn.functional as Fn
 from PIL import Image
 
 os.makedirs("frames", exist_ok=True)
-frames = np.load("data/episode_0000.npz")["frames"]
+frames = np.load("rollouts/episode_0000.npz")["frames"]
 
 
 def down(f, mode):

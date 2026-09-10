@@ -1,0 +1,16 @@
+[old]    0 pred 0.79034 tgt: norm 13.8564 std 0.90798 rel_std 0.06553 eff_rank  56.29 cos +0.0333
+[old]   40 pred 0.46763 tgt: norm 13.8564 std 0.88773 rel_std 0.06407 eff_rank  57.83 cos +0.0781
+[old]   80 pred 0.26132 tgt: norm 13.8564 std 0.71935 rel_std 0.05191 eff_rank  56.36 cos +0.4036
+[old]  120 pred 0.11202 tgt: norm 13.8564 std 0.48193 rel_std 0.03478 eff_rank  55.22 cos +0.7341
+[old]  160 pred 0.06098 tgt: norm 13.8564 std 0.34177 rel_std 0.02467 eff_rank  55.04 cos +0.8668
+[old]  200 pred 0.03992 tgt: norm 13.8564 std 0.26657 rel_std 0.01924 eff_rank  55.06 cos +0.9190
+[old]  240 pred 0.03115 tgt: norm 13.8564 std 0.22250 rel_std 0.01606 eff_rank  55.16 cos +0.9437
+[old]  280 pred 0.02475 tgt: norm 13.8564 std 0.19468 rel_std 0.01405 eff_rank  55.05 cos +0.9569
+[old]  320 pred 0.02087 tgt: norm 13.8564 std 0.17585 rel_std 0.01269 eff_rank  55.22 cos +0.9649
+[old]  360 pred 0.01833 tgt: norm 13.8564 std 0.16279 rel_std 0.01175 eff_rank  54.76 cos +0.9699
+[old]  400 pred 0.01671 tgt: norm 13.8564 std 0.15341 rel_std 0.01107 eff_rank  54.92 cos +0.9733
+[old]  440 pred 0.01530 tgt: norm 13.8564 std 0.14670 rel_std 0.01059 eff_rank  54.79 cos +0.9756
+[old]  480 pred 0.01400 tgt: norm 13.8564 std 0.14199 rel_std 0.01025 eff_rank  54.45 cos +0.9771
+[old]  520 pred 0.01391 tgt: norm 13.8564 std 0.13880 rel_std 0.01002 eff_rank  54.91 cos +0.9781
+[old]  560 pred 0.01373 tgt: norm 13.8564 std 0.13703 rel_std 0.00989 eff_rank  54.92 cos +0.9787
+[old]  600 pred 0.01307 tgt: norm 13.8564 std 0.13648 rel_std 0.00985 eff_rank  54.66 cos +0.9788

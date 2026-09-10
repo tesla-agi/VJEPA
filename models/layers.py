@@ -18,7 +18,7 @@ class Attention(nn.Module):
         nn.init.trunc_normal_(self.c_proj.weight,std=resid_std)
         nn.init.zeros_(self.c_proj.bias)
 
-    def forward(self,x):
+    def forward(self,x,return_attn=False):
         B,T,d_model=x.size()
         qkv=self.c_attn(x)
         q,k,v=qkv.split(self.d_model,dim=2)
@@ -26,12 +26,15 @@ class Attention(nn.Module):
         k=k.view(B,T,self.n_head,self.d_k).transpose(1,2)
         v=v.view(B,T,self.n_head,self.d_k).transpose(1,2)
 
-        attn_score=(q@k.transpose(-1,-2))/math.sqrt(k.size(-1))
-        attn=F.softmax(attn_score,dim=-1)
-        y=attn@v
+        if return_attn:
+            attn=F.softmax((q@k.transpose(-1,-2))/math.sqrt(self.d_k),dim=-1)
+            y=attn@v
+        else:
+            attn=None
+            y=F.scaled_dot_product_attention(q,k,v)
         out=y.transpose(1,2).contiguous().view(B,T,d_model)
         out=self.c_proj(out)
-        return out
+        return (out,attn) if return_attn else out
 
 class MLP(nn.Module):
     def __init__(self,d_model,resid_std):
@@ -70,11 +73,11 @@ class SWiGLU(nn.Module):
         return self.fc2(self.silu(self.fc1(x))*self.fc3(x))
 
 
-def _make_norm(name,d_model):
+def _make_norm(name,d_model,affine=True):
     if name=='layer_norm':
-        return nn.LayerNorm(d_model)
+        return nn.LayerNorm(d_model,elementwise_affine=affine)
     if name=="rms_norm":
-        return nn.RMSNorm(d_model)
+        return nn.RMSNorm(d_model,elementwise_affine=affine)
     else:
         raise ValueError(name)
 
@@ -95,7 +98,12 @@ class ViTBlock(nn.Module):
         self.ln2=_make_norm(norm_type,d_model)
         self.ffn=_make_ffn(ffn_type,d_model,resid_std)
 
-    def forward(self,x):
+    def forward(self,x,return_attn=False):
+        if return_attn:
+            a,attn=self.attn(self.ln1(x),return_attn=True)
+            x=x+a
+            x=x+self.ffn(self.ln2(x))
+            return x,attn
         x=x+self.attn(self.ln1(x))
         x=x+self.ffn(self.ln2(x))
         return x
